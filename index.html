@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construtora Elite | Excelência em Engenharia e Construção</title>
+    <meta name="description" content="A Construtora Elite transforma visões em estruturas sólidas com excelência técnica e design atemporal.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #D97706; /* Amber-600 */
+            --secondary: #0F172A; /* Slate-900 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-scrolled {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
+        }
+
+        /* Portfolio Image Zoom */
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D97706',
+                            dark: '#0F172A',
+                            slate: '#1E293B',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
+  }
+}
+</script>
+</head>
+<body class="bg-white text-brand-dark overflow-x-hidden">
+
+    <!-- Header / Navigation -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <i class="fas fa-building text-brand-gold text-3xl"></i>
+                <span class="text-white text-2xl font-bold tracking-tighter">
+                    CONSTRUTORA <span class="text-brand-gold font-serif italic">ELITE</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-white hover:text-brand-gold transition-colors font-medium">Início</a>
+                <a href="#sobre" class="text-white hover:text-brand-gold transition-colors font-medium">Sobre</a>
+                <a href="#servicos" class="text-white hover:text-brand-gold transition-colors font-medium">Serviços</a>
+                <a href="#projetos" class="text-white hover:text-brand-gold transition-colors font-medium">Projetos</a>
+                <a href="#contato" class="bg-brand-gold text-white px-6 py-2 rounded shadow-lg hover:bg-amber-700 transition-all font-bold">Orçamento</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center gap-8 text-white translate-x-full transition-transform duration-500">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-3xl">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" class="text-2xl font-bold hover:text-brand-gold">Início</a>
+        <a href="#sobre" class="text-2xl font-bold hover:text-brand-gold">Sobre</a>
+        <a href="#servicos" class="text-2xl font-bold hover:text-brand-gold">Serviços</a>
+        <a href="#projetos" class="text-2xl font-bold hover:text-brand-gold">Projetos</a>
+        <a href="#contato" class="text-2xl font-bold bg-brand-gold px-8 py-3 rounded">Contato</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070" 
+                 alt="Edifício moderno em construção" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <h4 class="text-brand-gold font-bold uppercase tracking-[0.3em] mb-4 animate-pulse">Engenharia de Valor</h4>
+                <h1 class="text-white text-5xl md:text-7xl font-serif leading-tight mb-6">
+                    Construindo o seu <span class="text-brand-gold">futuro</span> com solidez.
+                </h1>
+                <p class="text-gray-300 text-lg md:text-xl mb-10 leading-relaxed max-w-xl">
+                    Referência em obras residenciais e corporativas de alto padrão. Unimos tecnologia construtiva e design para entregar projetos memoráveis.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#projetos" class="px-10 py-4 bg-brand-gold text-white font-bold text-center rounded shadow-2xl hover:bg-amber-700 transition-all flex items-center justify-center gap-2">
+                        Ver Portfólio <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#sobre" class="px-10 py-4 border-2 border-white text-white font-bold text-center rounded hover:bg-white hover:text-brand-dark transition-all">
+                        Quem Somos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-brand-dark border-t border-slate-800">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center reveal">
+                <h3 class="text-brand-gold text-4xl font-bold mb-2">25+</h3>
+                <p class="text-gray-400 uppercase text-xs tracking-widest">Anos de Mercado</p>
+            </div>
+            <div class="text-center reveal">
+                <h3 class="text-brand-gold text-4xl font-bold mb-2">150+</h3>
+                <p class="text-gray-400 uppercase text-xs tracking-widest">Obras Entregues</p>
+            </div>
+            <div class="text-center reveal">
+                <h3 class="text-brand-gold text-4xl font-bold mb-2">12k</h3>
+                <p class="text-gray-400 uppercase text-xs tracking-widest">m² Construídos</p>
+            </div>
+            <div class="text-center reveal">
+                <h3 class="text-brand-gold text-4xl font-bold mb-2">100%</h3>
+                <p class="text-gray-400 uppercase text-xs tracking-widest">Satisfação</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-24 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative reveal">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 border-t-4 border-l-4 border-brand-gold"></div>
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1000" 
+                         alt="Arquitetos discutindo planta" 
+                         class="rounded-lg shadow-2xl relative z-10">
+                    <div class="absolute -bottom-10 -right-10 bg-brand-gold p-8 text-white hidden md:block z-20">
+                        <p class="text-4xl font-bold italic">Elite</p>
+                        <p class="text-sm tracking-widest uppercase">Since 1998</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest mb-4">Conheça a Construtora</h2>
+                    <h3 class="text-4xl md:text-5xl font-serif text-brand-dark mb-6 leading-tight">Legado de confiança e inovação constante.</h3>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        Fundada em 1998, a Construtora Elite consolidou-se no mercado como sinônimo de excelência. Nossa missão vai além de erguer paredes; construímos espaços que promovem qualidade de vida e prosperidade para nossos clientes.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        Utilizamos metodologias ágeis e materiais sustentáveis, garantindo que cada obra seja entregue dentro do prazo, com o menor impacto ambiental e a maior durabilidade possível.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="font-bold text-brand-dark">Certificação ISO 9001</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="font-bold text-brand-dark">Segurança no Trabalho</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="font-bold text-brand-dark">Tecnologia BIM</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="font-bold text-brand-dark">Sustentabilidade</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="text-brand-gold font-bold uppercase tracking-widest mb-4">Nossos Serviços</h2>
+                <h3 class="text-4xl font-serif text-brand-dark mb-4">Soluções integradas para todas as fases da sua obra.</h3>
+                <div class="w-20 h-1 bg-brand-gold mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-brand-gold reveal">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Residencial Premium</h4>
+                    <p class="text-gray-600">Construção de casas e condomínios de luxo com acabamento refinado e gestão completa.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-brand-gold reveal">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Obras Corporativas</h4>
+                    <p class="text-gray-600">Projetos otimizados para empresas, focando em funcionalidade, ergonomia e prazos rígidos.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-brand-gold reveal">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Gestão de Projetos</h4>
+                    <p class="text-gray-600">Acompanhamento técnico integral, desde a viabilidade financeira até a entrega das chaves.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-brand-gold reveal">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Reformas e Retrofit</h4>
+                    <p class="text-gray-600">Modernização de fachadas e interiores preservando a essência do imóvel com tecnologia atual.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-brand-gold reveal">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Consultoria Técnica</h4>
+                    <p class="text-gray-600">Avaliação de terrenos, perícias estruturais e orçamentos detalhados para o seu investimento.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-brand-gold reveal">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Construção Sustentável</h4>
+                    <p class="text-gray-600">Implementação de sistemas de energia solar, reuso de água e materiais de baixo impacto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Portfolio -->
+    <section id="projetos" class="py-24 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 reveal">
+                <div class="max-w-xl">
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest mb-4">Portfólio</h2>
+                    <h3 class="text-4xl font-serif text-brand-dark leading-tight">Excelência materializada em grandes obras.</h3>
+                </div>
+                <div class="flex gap-4">
+                    <button class="px-6 py-2 bg-brand-gold text-white font-bold rounded">Todos</button>
+                    <button class="px-6 py-2 text-gray-400 hover:text-brand-gold transition-colors font-bold">Residencial</button>
+                    <button class="px-6 py-2 text-gray-400 hover:text-brand-gold transition-colors font-bold">Corporativo</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card relative overflow-hidden rounded-xl group reveal">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" 
+                         alt="Mansão Contemporânea" 
+                         class="w-full h-[400px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-8">
+                        <p class="text-brand-gold font-bold uppercase text-xs mb-2">Residencial</p>
+                        <h4 class="text-white text-2xl font-bold">Residência Skyline</h4>
+                        <p class="text-gray-300 text-sm mt-2">Condomínio fechado, 500m², São Paulo.</p>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card relative overflow-hidden rounded-xl group reveal">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" 
+                         alt="Edifício Corporativo" 
+                         class="w-full h-[400px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-8">
+                        <p class="text-brand-gold font-bold uppercase text-xs mb-2">Corporativo</p>
+                        <h4 class="text-white text-2xl font-bold">Elite Business Center</h4>
+                        <p class="text-gray-300 text-sm mt-2">Centro empresarial, 12 andares, Curitiba.</p>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card relative overflow-hidden rounded-xl group reveal">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" 
+                         alt="Casa de Praia" 
+                         class="w-full h-[400px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-8">
+                        <p class="text-brand-gold font-bold uppercase text-xs mb-2">Residencial</p>
+                        <h4 class="text-white text-2xl font-bold">Villa Ocean Breeze</h4>
+                        <p class="text-gray-300 text-sm mt-2">Casa pé na areia, Rio de Janeiro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-brand-gold">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-white text-3xl md:text-5xl font-serif mb-8 leading-tight">Pronto para transformar seu terreno no projeto dos sonhos?</h2>
+            <a href="#contato" class="inline-block bg-brand-dark text-white px-12 py-5 rounded-lg text-xl font-bold hover:bg-slate-800 transition-all shadow-2xl">
+                Solicite um Orçamento Gratuito
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest mb-4">Contato</h2>
+                    <h3 class="text-4xl font-serif text-brand-dark mb-8">Vamos tirar sua ideia do papel?</h3>
+                    <p class="text-gray-600 text-lg mb-12">Nossa equipe de especialistas está pronta para analisar seu projeto e oferecer a melhor solução técnica e financeira.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-gold shadow-md">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-brand-dark">Telefone</h5>
+                                <p class="text-gray-600">(11) 4002-8922</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-gold shadow-md">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-brand-dark">E-mail</h5>
+                                <p class="text-gray-600">contato@construtoraelite.com.br</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-gold shadow-md">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-brand-dark">Endereço</h5>
+                                <p class="text-gray-600">Av. Paulista, 1000 - Bela Vista, São Paulo - SP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl reveal">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-brand-dark mb-2 uppercase">Nome</label>
+                                <input type="text" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded focus:border-brand-gold outline-none transition-all" placeholder="Seu nome completo">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-brand-dark mb-2 uppercase">E-mail</label>
+                                <input type="email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded focus:border-brand-gold outline-none transition-all" placeholder="exemplo@email.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-brand-dark mb-2 uppercase">Tipo de Obra</label>
+                            <select class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded focus:border-brand-gold outline-none transition-all">
+                                <option>Residencial</option>
+                                <option>Corporativo</option>
+                                <option>Reforma / Retrofit</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-brand-dark mb-2 uppercase">Mensagem</label>
+                            <textarea rows="5" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded focus:border-brand-gold outline-none transition-all" placeholder="Descreva brevemente o seu projeto..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-gold text-white font-bold py-4 rounded shadow-lg hover:bg-amber-700 transition-all uppercase tracking-widest">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-20 pb-10 border-t border-slate-800">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <a href="#" class="flex items-center gap-2 mb-6">
+                        <i class="fas fa-building text-brand-gold text-3xl"></i>
+                        <span class="text-white text-2xl font-bold tracking-tighter">ELITE</span>
+                    </a>
+                    <p class="text-gray-400 leading-relaxed mb-6">Construindo marcos de engenharia e transformando sonhos em realidade sólida desde 1998.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-gold transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-gold transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-gold transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-6 border-b border-brand-gold inline-block">Navegação</h5>
+                    <ul class="space-y-4 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="hover:text-white transition-colors">Nossa História</a></li>
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Nossos Serviços</a></li>
+                        <li><a href="#projetos" class="hover:text-white transition-colors">Portfólio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-6 border-b border-brand-gold inline-block">Jurídico</h5>
+                    <ul class="space-y-4 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Compliance</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-6 border-b border-brand-gold inline-block">Newsletter</h5>
+                    <p class="text-gray-400 mb-4">Fique por dentro das novidades do mercado.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Seu e-mail" class="bg-slate-800 border-none rounded-l px-4 py-2 w-full focus:ring-1 focus:ring-brand-gold">
+                        <button class="bg-brand-gold px-4 py-2 rounded-r hover:bg-amber-700 transition-colors"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+                <p>&copy; 2024 Construtora Elite S.A. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <i class="fas fa-heart text-red-500"></i> para Excelência.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Sticky Header Logic
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('nav-scrolled');
+            } else {
+                header.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('translate-x-full');
+        };
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll); // Check on load
+
+        // Form Submit Simulation
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> Enviando...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert('Mensagem enviada com sucesso! Nossa equipe entrará em contato em breve.');
+                e.target.reset();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 2000);
+        });
+
+        // Smooth Scroll Adjust for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
